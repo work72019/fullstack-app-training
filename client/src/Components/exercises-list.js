@@ -34,22 +34,21 @@ export default class ExercisesList extends Component {
 	}
 
 	componentWillMount() {
-		Axios.get("http://localhost:3001/exercises/")
+		Axios.get("/exercises/")
 			.then(res => {
+				console.log("res", res);
 				this.setState({ exercises: res.data });
 			})
 			.catch(err => console.log(`Error: ${err}`));
 	}
 
 	deleteExercise(id) {
-		Axios.delete(`http://localhost:3001/exercises/delete/${id}`).then(
-			res => {
-				console.log(res.data);
-				this.setState({
-					exercises: this.state.exercises.filter(el => el._id !== id)
-				});
-			}
-		);
+		Axios.delete(`/exercises/delete/${id}`).then(res => {
+			console.log(res.data);
+			this.setState({
+				exercises: this.state.exercises.filter(el => el._id !== id)
+			});
+		});
 	}
 
 	exercisesList() {

@@ -4,6 +4,7 @@ var cors = require("cors");
 require("dotenv").config();
 const logger = require("morgan");
 const Data = require("./data");
+const path = require("path");
 
 const app = express();
 app.use(cors());
@@ -15,14 +16,20 @@ const DB_URI =
 	"mongodb+srv://fullstack_app:123456Asd@cluster0-pz6hc.mongodb.net/test?retryWrites=true&w=majority";
 
 /* MangoeDB Conecation */
-mongoose.connect(
-	"mongodb+srv://fullstack_app:123456Asd@cluster0-pz6hc.mongodb.net/test?retryWrites=true&w=majority",
-	{ useNewUrlParser: true, useCreateIndex: true }
-);
+mongoose.connect(DB_URI, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
 	console.log("MongoDB database connection established successfully");
 });
+
+// ... other app.use middleware
+app.use(express.static(path.join(__dirname, "client", "build")));
+
+// ...
+// // Right before your app.listen(), add this:
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 /* Routes */
 const usersRoutes = require("./routes/users");
