@@ -15,7 +15,10 @@ const DB_URI =
 	"mongodb+srv://fullstack_app:123456Asd@cluster0-pz6hc.mongodb.net/test?retryWrites=true&w=majority";
 
 /* MangoeDB Conecation */
-mongoose.connect(DB_URI, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(
+	"mongodb+srv://fullstack_app:123456Asd@cluster0-pz6hc.mongodb.net/test?retryWrites=true&w=majority",
+	{ useNewUrlParser: true, useCreateIndex: true }
+);
 const connection = mongoose.connection;
 connection.once("open", () => {
 	console.log("MongoDB database connection established successfully");
