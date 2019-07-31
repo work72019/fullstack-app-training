@@ -10,7 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 const APP_PORT = process.env.PORT || 5000;
-const DB_URI = process.env.DB_URI;
+const DB_URI =
+	process.env.DB_URI ||
+	"mongodb+srv://fullstack_app:123456Asd@cluster0-pz6hc.mongodb.net/test?retryWrites=true&w=majority";
 
 /* MangoeDB Conecation */
 mongoose.connect(DB_URI, { useNewUrlParser: true, useCreateIndex: true });
