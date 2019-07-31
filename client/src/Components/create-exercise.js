@@ -23,7 +23,7 @@ export default class CreateExercise extends Component {
 	}
 
 	componentDidMount() {
-		Axios.get("http://localhost:3001/users/")
+		Axios.get("/users/")
 			.then(res => {
 				console.log(res.data);
 				if (res.data.length > 0) {
@@ -65,7 +65,7 @@ export default class CreateExercise extends Component {
 			duration: this.state.duration,
 			date: this.state.date
 		};
-		Axios.post("http://localhost:3001/exercises/add", exercise)
+		Axios.post("/exercises/add", exercise)
 			.then(res => {
 				console.log("exercise:", exercise);
 				window.location = "/";
